@@ -1,0 +1,10 @@
+[user]
+	email = nico@bug-heaven.com
+	name = Nico
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCMqZwPCCoyhySgn4HNPZVBnr3Lt7Q80BKeQuqbOseeib3Mal0mWirFume7ukQ/8Xg6jrDoBRhsoI7BYZdUN0Y/Jar7YjitoqtBCqsabu4GDXEhYVhtIOKHeG8UtczWHsjCctqZF1m/EZeFEpVTKqFqf3O/h1hUhf5TLa4/58q/6sVmMgQBdE/4aJt/JRKCkVnw12dHGvKJvFklqsyI8NGW2jXIioZDcmLE5+efWydQzK6sx6jv0Y3LJigZYB0DM0Z4HMqThSPEybi3EOewTPjiMXe9yxOABozvnIsdJODNrpWYXG3bHqWRkaQr1vylrKHr9qnfwrutxfrUlhNzRg50nlwyAMBvZXRkv6NVGpmj+iMvKYTWrYd5Jug2arqcylGfkbvssTKFHQGHKmOzNLxRA3ptPk/RPu0IQ6cKvOisKODgc8z9Ntv2eBquCwaZEsuqPiVCihxUq/7nQl63LnYk7/8mQvsPvgnb20HSs3xHwACPN0xl1jiV1oLljTuPt70BoYfyS/g6iMA9AzXQ/3Tf1EB0BHd+cs78HXOx922PYIkoibPiEhIRI98EcCSXvap9Pgwk+snGxBkmST7X1MntNqjq2PaLA3SWGHGgpFv7QPzg5Q1SN11lTqfZuk8DJzIl+3HoQ3NK6NNl2SnaWfKGlxkl+HTMqWldmJwJbZGvtw==
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/maint/.ssh/allowed_signers
