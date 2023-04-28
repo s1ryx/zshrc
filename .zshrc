@@ -260,3 +260,9 @@ fi
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
+
+# add env vars
+export EDITOR="/bin/nano"
+export VISUAL="$EDITOR"
+export GIT_EDITOR="$EDITOR"
+export SELECTED_EDITOR="$EDITOR"
