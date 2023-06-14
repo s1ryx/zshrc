@@ -28,8 +28,9 @@ bindkey '^[[6~' end-of-buffer-or-history          # page down
 bindkey '^[[H' beginning-of-line                  # home
 bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
-bindkey '^[OA' history-search-backward
-bindkey '^[OB' history-search-forward
+# mine
+bindkey "^[[A~" history-search-backward
+bindkey "^[[B~" history-search-forward
 
 # enable completion features
 autoload -Uz compinit
@@ -55,7 +56,7 @@ SAVEHIST=2000
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
+setopt no_hist_verify         # do not show command with history expansion to user before running it
 #setopt share_history         # share command history data
 
 # force zsh to show the complete history
@@ -266,3 +267,4 @@ export EDITOR="/bin/nano"
 export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
 export SELECTED_EDITOR="$EDITOR"
+export PATH="$PATH":~/.local/bin
