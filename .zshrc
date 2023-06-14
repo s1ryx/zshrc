@@ -1,6 +1,5 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
-PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files (x86)/Bitvise SSH Client:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/WireGuard/:/mnt/c/Users/fuckwindows3/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files (x86)/Nmap:/mnt/c/Users/fuckwindows3/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/Sophos/Sophos SSL VPN Client/bin:/home/maint/.dotnet/tools"
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
