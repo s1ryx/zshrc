@@ -1,5 +1,6 @@
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/System32:/mnt/c/Windows:/mnt/c/Windows/System32/wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files (x86)/Bitvise SSH Client:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/WireGuard/:/mnt/c/Users/fuckwindows3/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files (x86)/Nmap:/mnt/c/Users/fuckwindows3/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files (x86)/Sophos/Sophos SSL VPN Client/bin:/home/maint/.dotnet/tools"
 
 setopt autocd              # change directory just by typing its name
 #setopt correct            # auto correct mistakes
@@ -28,8 +29,9 @@ bindkey '^[[6~' end-of-buffer-or-history          # page down
 bindkey '^[[H' beginning-of-line                  # home
 bindkey '^[[F' end-of-line                        # end
 bindkey '^[[Z' undo                               # shift + tab undo last action
-bindkey '^[OA' history-search-backward
-bindkey '^[OB' history-search-forward
+# mine
+bindkey "^[[A~" history-search-backward
+bindkey "^[[B~" history-search-forward
 
 # enable completion features
 autoload -Uz compinit
@@ -55,7 +57,7 @@ SAVEHIST=2000
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
+setopt no_hist_verify         # do not show command with history expansion to user before running it
 #setopt share_history         # share command history data
 
 # force zsh to show the complete history
@@ -266,3 +268,4 @@ export EDITOR="/bin/nano"
 export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
 export SELECTED_EDITOR="$EDITOR"
+export PATH="$PATH":~/.local/bin
