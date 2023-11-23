@@ -290,5 +290,5 @@ else
 fi
 
 # mine
-bindkey "$key[Up]" history-beginning-search-backward
-bindkey "$key[Down]" history-beginning-search-forward
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
