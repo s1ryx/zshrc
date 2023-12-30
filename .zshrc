@@ -1,3 +1,105 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="darkblood"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+zstyle ':omz:update' frequency 30
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+HIST_STAMPS="dd.mm.yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='nano'
+else
+  export EDITOR='nano'
+fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
 # ~/.zshrc file for zsh interactive shells.
 # see /usr/share/doc/zsh/examples/zshrc for examples
 
@@ -47,11 +149,8 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-# History configurations
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=2000
+HISTSIZE=10000
+SAVEHIST=20000
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
@@ -66,67 +165,6 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
-fi
-
-configure_prompt() {
-    prompt_symbol=㉿
-    # Skull emoji for root terminal
-    [ "$EUID" -eq 0 ] && prompt_symbol=💀
-    case "$PROMPT_ALTERNATIVE" in
-        twoline)
-            PROMPT=$'%F{%(#.red.blue)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.green.red)}%n'$prompt_symbol$'%m%b%F{%(#.red.blue)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.red.blue)}]\n└─%B%(#.%F{green}#.%F{red}$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{green}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        oneline)
-            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.green.red)}%n@%m%b%F{reset}:%B%F{%(#.red.blue)}%~%b%F{reset}%(#.#.$) '
-            RPROMPT=
-            ;;
-        backtrack)
-            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{green}%n@%m%b%F{reset}:%B%F{red}%~%b%F{reset}%(#.#.$) '
-            RPROMPT=
-            ;;
-    esac
-    unset prompt_symbol
-}
-
-# The following block is surrounded by two delimiters.
-# These delimiters must not be modified. Thanks.
-# START KALI CONFIG VARIABLES
-PROMPT_ALTERNATIVE=twoline
-NEWLINE_BEFORE_PROMPT=yes
-# STOP KALI CONFIG VARIABLES
-
-if [ "$color_prompt" = yes ]; then
-    # override default virtualenv indicator in prompt
-    VIRTUAL_ENV_DISABLE_PROMPT=1
-
-    configure_prompt
 
     # enable syntax-highlighting
     if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
@@ -174,45 +212,6 @@ if [ "$color_prompt" = yes ]; then
         ZSH_HIGHLIGHT_STYLES[bracket-level-5]=fg=cyan,bold
         ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]=standout
     fi
-else
-    PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~%(#.#.$) '
-fi
-unset color_prompt force_color_prompt
-
-toggle_oneline_prompt(){
-    if [ "$PROMPT_ALTERNATIVE" = oneline ]; then
-        PROMPT_ALTERNATIVE=twoline
-    else
-        PROMPT_ALTERNATIVE=oneline
-    fi
-    configure_prompt
-    zle reset-prompt
-}
-zle -N toggle_oneline_prompt
-bindkey ^P toggle_oneline_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*|Eterm|aterm|kterm|gnome*|alacritty)
-    TERM_TITLE=$'\e]0;${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%n@%m: %~\a'
-    ;;
-*)
-    ;;
-esac
-
-precmd() {
-    # Print the previously configured title
-    print -Pnr -- "$TERM_TITLE"
-
-    # Print a new line before the prompt, but only if it is not the first line
-    if [ "$NEWLINE_BEFORE_PROMPT" = yes ]; then
-        if [ -z "$_NEW_LINE_BEFORE_PROMPT" ]; then
-            _NEW_LINE_BEFORE_PROMPT=1
-        else
-            print ""
-        fi
-    fi
-}
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -266,3 +265,5 @@ export EDITOR="/bin/nano"
 export VISUAL="$EDITOR"
 export GIT_EDITOR="$EDITOR"
 export SELECTED_EDITOR="$EDITOR"
+export JAVA_HOME="/data/data/com.termux/files/usr/bin"
+export PATH="${PATH}:/data/data/com.termux/files/home/.local/bin"
